@@ -10,11 +10,12 @@ Com ele é possível :
  reproduzir musicas
  
 ## 🛠 Tecnologias usadas:
-pytube
-moviepy
-youtubesearhpython
-pygame
-tabulatepyinstaller
+ - pytube
+ - moviepy
+ - youtubesearhpython
+ - pygame
+ - tabulate
+ - pyinstaller
 ## 🚀 Detalhes da Versão
 Nome da Versão: YouTube Downloader v1.1.0
 Data da Release: 03 de março de 2024
