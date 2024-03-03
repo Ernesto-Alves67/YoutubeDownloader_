@@ -9,13 +9,13 @@ Com ele é possível :
  realizar downloads MP3
  reproduzir musicas
  
-🛠 Tecnologias usadas:
+## 🛠 Tecnologias usadas:
 pytube
 moviepy
 youtubesearhpython
 pygame
 tabulatepyinstaller
-🚀 Detalhes da Versão
+## 🚀 Detalhes da Versão
 Nome da Versão: YouTube Downloader v1.1.0
 Data da Release: 03 de março de 2024
 Autor: ernesto-alves67
