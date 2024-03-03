@@ -1,7 +1,7 @@
 # YoutubeDownloader_
-A simple way to converte videos prom youube to .mp3 audio files.
+A simple way to converte videos from YouTube to .mp3 audio files. and more...
 
-👁️‍🗨️ Visão Geral
+## 👁️‍🗨️ Visão Geral
 O programa desenvolvido em Python permite a possibilidade de buscas de videos no youtude, daownload em mp3 reprodução de audio .mp3.
 
 Com ele é possível :
