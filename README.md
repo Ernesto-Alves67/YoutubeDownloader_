@@ -23,3 +23,4 @@ Com ele é possível :
 ## ⬇️ Como utilizar
   - [baixe o instalador do programa](https://github.com/Ernesto-Alves67/YoutubeDownloader/install_YtDloader.exe).
   - Ou [baixe o .exe do programa](https://github.com/Ernesto-Alves67/YoutubeDownloader/YtDloader.exe)
+	- Após instalado/baixado execute a aplicacao como administrador.
