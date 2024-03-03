@@ -17,6 +17,6 @@ Com ele é possível :
  - tabulate
  - pyinstaller
 ## 🚀 Detalhes da Versão
-Nome da Versão: YouTube Downloader v1.1.0
-Data da Release: 03 de março de 2024
-Autor: ernesto-alves67
+  - Nome da Versão: YouTube Downloader v1.1.0
+  - Data da Release: 03 de março de 2024
+  - Autor: ernesto-alves67
