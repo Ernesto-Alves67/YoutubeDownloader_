@@ -21,6 +21,7 @@ Com ele é possível :
   - Data da Release: 03 de março de 2024
   - Autor: ernesto-alves67
 ## ⬇️ Como utilizar
-  - [baixe o instalador do programa](https://github.com/Ernesto-Alves67/YoutubeDownloader/install_YtDloader.exe).
-  - Ou [baixe o .exe do programa](https://github.com/Ernesto-Alves67/YoutubeDownloader/YtDloader.exe)
+- [Baixe o instalador do programa](https://github.com/Ernesto-Alves67/YoutubeDownloader/raw/main/install_YtDloader.exe).
+- Ou [baixe o .exe do programa](https://github.com/Ernesto-Alves67/YoutubeDownloader/raw/main/YtDloader.exe).
+
 	- Após instalado/baixado execute a aplicacao como administrador.
