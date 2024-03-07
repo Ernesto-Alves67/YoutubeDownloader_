@@ -20,3 +20,8 @@ Com ele é possível :
   - Nome da Versão: YouTube Downloader v1.1.0
   - Data da Release: 03 de março de 2024
   - Autor: ernesto-alves67
+## ⬇️ Como utilizar
+- [Baixe o instalador do programa](https://github.com/Ernesto-Alves67/YoutubeDownloader_/raw/main/install_YtDloader.exe).
+- Ou [baixe o .exe do programa](https://github.com/Ernesto-Alves67/YoutubeDownloader_/raw/main/YtDloader.exe).
+
+	- Após instalado/baixado execute a aplicacao como administrador.
