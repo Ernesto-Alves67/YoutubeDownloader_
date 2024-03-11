@@ -2,12 +2,9 @@ from pytube import YouTube
 from moviepy.editor import AudioFileClip
 import os
 from youtubesearchpython import VideosSearch
-from tabulate import tabulate
+#from tabulate import tabulate
 import pygame
 import time
-
-
-
 
  # ========== Funçoes ========================== #
  
@@ -60,22 +57,78 @@ def reproduzir_audio(arquivo_mp3):
         pygame.quit()
     pygame.quit()
     
-def download_youtube_audio(youtube_url, output_filename):
+def download_youtube_audio(youtube_url, output_filename, temp_dir=None):
+    if temp_dir is None:
+        temp_dir = os.getcwd()  # Define o diretório atual como padrão
+    print(temp_dir)
     try:
         # Baixar o vídeo do YouTube
         yt = YouTube(youtube_url)
         video = yt.streams.filter(only_audio=True).first()
-        video.download(filename='temp.mp4')
+        video.download(output_path=temp_dir, filename='temp.mp4')  # Salva o arquivo temporário no diretório especificado
 
         # Converter o vídeo para MP3
-        video_clip = AudioFileClip('temp.mp4')
-        video_clip.write_audiofile(output_filename)
+        video_clip = AudioFileClip(os.path.join(temp_dir, 'temp.mp4'))
+        video_clip.write_audiofile(output_filename, codec='libmp3lame')
 
         # Limpar o arquivo temporário
         video_clip.close()
-        os.remove('temp.mp4')
+        os.remove(os.path.join(temp_dir, 'temp.mp4'))
+
+        
+
     except Exception as e:
-        raise Exception("Erro ao baixar ou converter o arquivo:", str(e))
+        print("Erro ao baixar e converter o áudio:", e)
+
+
+def buscar_videos(entrada):
+    global resultBuscas
+    global num_buscas_realizadas
+    global num_e
+    max_results = 10 # Número máximo de resultados a serem retornados
+    videos_search = VideosSearch(entrada, limit=max_results)# Realizando a pesquisa no YouTube
+
+    videos = videos_search.result() # Obtendo os resultados da pesquisa
+    
+    # ============= Verificando quantidade de buscas feitas
+    if(num_buscas_realizadas == 1):
+        num_e = 11
+    elif(num_buscas_realizadas == 2):
+        num_e = 21
+    elif(num_buscas_realizadas == 3):
+        num_e = 31
+    elif(num_buscas_realizadas == 4):
+        num_e = 41
+    elif(num_buscas_realizadas == 5):
+        num_e = 51
+    
+    for index, video in enumerate(videos['result'], num_e): # Extraindo informações dos resultados da pesquisa
+        title = video['title']
+        video_id = video['id']
+        channel = video['channel']['name']
+        duration = video['duration']
+        views = video['viewCount']['short']
+        url = video['link']
+        table_data.append([title, channel, duration, url])
+    
+    resultBuscas.extend(table_data)
+    return resultBuscas
+
+
+# ================================================== [BEGIN] Implementação ================================ #
+
+# ================= Variáveis do programa ================== #
+num_buscas_realizadas = 0
+num_e = 1 
+table_data = [] # lista temporaria para guardar resultados
+resultBuscas = []
+arquivos_mp3 = []
+video = ''
+nome = ''
+
+
+
+"""
 
 def exibir_resultados_buscas(resultBuscas):
     # Exibindo resultados
@@ -111,53 +164,8 @@ def verifica_escolha(escolha):
     except ValueError:
             print("Por favor, digite 's' para 'sim' ou 'n' para 'não'.")
 
-def buscar_videos(entrada):
-    global resultBuscas
-    global num_buscas_realizadas
-    global num_e
-    max_results = 10 # Número máximo de resultados a serem retornados
-    videos_search = VideosSearch(entrada, limit=max_results)# Realizando a pesquisa no YouTube
 
-    videos = videos_search.result() # Obtendo os resultados da pesquisa
-    
-    # ============= Verificando quantidade de buscas feitas
-    if(num_buscas_realizadas == 1):
-        num_e = 11
-    elif(num_buscas_realizadas == 2):
-        num_e = 21
-    elif(num_buscas_realizadas == 3):
-        num_e = 31
-    elif(num_buscas_realizadas == 4):
-        num_e = 41
-    elif(num_buscas_realizadas == 5):
-        num_e = 51
-    
-    for index, video in enumerate(videos['result'], num_e): # Extraindo informações dos resultados da pesquisa
-        title = video['title']
-        video_id = video['id']
-        channel = video['channel']['name']
-        duration = video['duration']
-        views = video['viewCount']['short']
-        url = video['link']
-        table_data.append([title, channel, duration, url])
-    
-    resultBuscas.extend(table_data)
-    num_e +=1
-    return resultBuscas
 
-num_buscas_realizadas = 0
-num_e = 1 
-table_data = [] # lista temporaria para guardar resultados
-resultBuscas = []
-arquivos_mp3 = []
-video = ''
-
-"""
-# ================================================== [BEGIN] Implementação ================================ #
-
-# ================= Variáveis do programa ================== #
-
-nome = ''
 print(" O que deseja realizar? ") 
 opcao = input("[1] Busca  | [2] Download | [3] Escutar Musicas Baixadas |[0] Finalizar programa\t")
 
