@@ -2,7 +2,7 @@
 A simple way to converte videos from YouTube to .mp3 audio files. and more...
 
 ## 👁️‍🗨️ Visão Geral
-O programa desenvolvido em Python permite a possibilidade de buscas de videos no youtude, daownload em mp3 reprodução de audio .mp3.
+Programa desenvolvido em Python permite a possibilidade de buscas de videos no youtude, download em mp3 reprodução de audio.
 
 Com ele é possível :
   - realizar buscas no youtube
@@ -10,6 +10,7 @@ Com ele é possível :
   - reproduzir musicas
  
 ## 🛠 Tecnologias usadas:
+ - PyQt5
  - pytube
  - moviepy
  - youtubesearhpython
