@@ -1,0 +1,9 @@
+youtube-search-python
+pytube
+moviepy
+PyQt5
+pyqt5-tools
+pygame
+os
+sys
+
