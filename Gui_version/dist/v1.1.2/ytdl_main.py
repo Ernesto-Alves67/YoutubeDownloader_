@@ -7,9 +7,9 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QTableWidget, QTableWidgetItem, QAction, QFileDialog, QDialog, QSpinBox, QMessageBox, QInputDialog
 from PyQt5.QtCore import Qt, QEvent, pyqtSignal, QObject, QThread, QTimer, QFileInfo, QSize
 
-from menu import Ui_MainWindow
+from ui_ytdownloader import Ui_MainWindow
 from functools import partial
-from YtDloader import buscar_videos
+from buscas import buscar_videos
 
 from threading import Thread
 import pygame
@@ -279,7 +279,7 @@ class MyMainWindow(QMainWindow):
         self.ui.actConf_ds.triggered.connect(self.mostrar_configuracoes)
         self.ui.actAboutApp.triggered.connect(self.mostrar_sobre_ytd_dialog)
 
-        #self.ui.tabWidget.setCurrentIndex(1)
+        
     # ========================================= [InitUi]
     def initUI(self):
         self.setWindowIcon(QtGui.QIcon(self.ui.iconspath+'app-64.png'))
@@ -757,7 +757,7 @@ class MyMainWindow(QMainWindow):
 
     def start_manydownloads(self):
         checagem = self.bv_checa_nome()
-        print(self.varios_selec)
+        #print(self.varios_selec)
         if checagem:
             for musica in self.varios_selec:
                 print(musica)

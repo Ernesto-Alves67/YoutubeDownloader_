@@ -22,13 +22,12 @@ class Ui_MainWindow(object):
     path_musicas = path + "\\Musicas"
     
     if not os.path.exists(path_musicas):
-    # Se a pasta não existir, crie-a
         os.mkdir(path_musicas)
         #print("Pasta criada com sucesso!")
     else:
         pass
     
-	## ================================================ [Estilos]
+	## =========================================================== [Estilos]
     style_padrao_1 = "background-color: rgb(26,31,49);"\
                     ""\
                     "border-radius: 10px;"
@@ -79,7 +78,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.frame = QtWidgets.QFrame(self.centralwidget)
-        # ============================================= [Frame que contem tabwiget]
+        # ============================================= [Frame que contem tabwiget(Abas)]
         self.frame.setGeometry(QtCore.QRect(9, 19, 781, 591))
         self.frame.setStyleSheet("background-color: rgb(150, 150, 150);\n border-radius: 10px;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -92,7 +91,7 @@ class Ui_MainWindow(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         
-        # ======================================= [Frame que contem resultadoBuscas|Progresso downloads|Entre com URL]
+        # ======================================= [resultadoBuscas|Progresso downloads|Entre com URL]
         self.lineEdit = QtWidgets.QLineEdit(self.tab)
         self.lineEdit.setGeometry(QtCore.QRect(30, 20, 401, 20))
         self.lineEdit.setStyleSheet(self.styleEdit)
@@ -152,7 +151,7 @@ class Ui_MainWindow(object):
         
         self.tableWidget.viewport().update()
         self.tabWidget.addTab(self.tab,"")
-        # # ============================== [ FRAME BOTOES UTEIS ] ========================== # #
+        # # =================================================== [ FRAME BOTOES UTEIS ] ========================== # #
         
         self.frame_3 = QtWidgets.QFrame(self.tab)
         self.frame_3.setGeometry(QtCore.QRect(10, 380, 711, 80))
@@ -265,8 +264,6 @@ class Ui_MainWindow(object):
         self.button_listaMusicas.setFont(font)
         
         
-
-        
         # # ============================== [ FRAME BOTOES MUSIC PLAYER ] ========================== ##
         self.frMusic_controls = QtWidgets.QFrame(self.tab_2)
         self.frMusic_controls.setGeometry(QtCore.QRect(10, 475, 731, 71))
@@ -275,7 +272,7 @@ class Ui_MainWindow(object):
         self.frMusic_controls.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frMusic_controls.setObjectName("frMusic_controls")
         
-        # # #
+        ## ================================ [layout botoes music play]
         self.verticalLayout_6 = QVBoxLayout(self.frMusic_controls)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
 
@@ -285,12 +282,14 @@ class Ui_MainWindow(object):
         self.widget.setObjectName(u"widget")
         self.widget.setStyleSheet(u"background-color: rgb(150, 150, 150);\n"
         "border-radius: 10px;")
+        
         self.mPlayer_gridLayout = QGridLayout(self.widget)
         self.mPlayer_gridLayout.setObjectName(u"mPlayer_gridLayout")
         self.mPlayer_gridLayout.setVerticalSpacing(0)
         self.mPlayer_gridLayout.setContentsMargins(5, 5, 5, 5)
         self.btPlayer_layout = QHBoxLayout()
         self.btPlayer_layout.setObjectName(u"btPlayer_layout")
+        
         self.frame_botoes = QtWidgets.QFrame(self.widget)
         self.frame_botoes.setObjectName(u"frame_botoes")
         self.frame_botoes.setMaximumSize(QtCore.QSize(16777215, 100))
@@ -304,7 +303,8 @@ class Ui_MainWindow(object):
         self.btPlayer_layout2_2.setContentsMargins(0, 0, 0, 0)
         self.btPlayer_layout2 = QHBoxLayout()
         self.btPlayer_layout2.setObjectName(u"btPlayer_layout2")
-
+        
+        # ========================================================== [Criação dos botoes music player]
         self.button_anterior = QtWidgets.QPushButton(self.frame_botoes)
         self.button_anterior.setGeometry(QtCore.QRect(20, 42, 45, 40))
         self.button_anterior.setStyleSheet(self.stylebuttons)
@@ -370,13 +370,16 @@ class Ui_MainWindow(object):
         self.btPlayer_layout.setSpacing(10)
         self.mPlayer_gridLayout.addLayout(self.btPlayer_layout, 2, 1, 1, 1)
 
-
+        ## ===================================== [nome musica reproduzindo | volume slider | music tocando progress]
         self.slider = QSlider(self.widget)
         self.slider.setObjectName(u"slider")
         self.slider.setMaximumSize(QtCore.QSize(16777215, 20))
         self.slider.setOrientation(Qt.Horizontal)
-
         self.mPlayer_gridLayout.addWidget(self.slider, 1, 1, 1, 1)
+        
+        self.volume_slider = QSlider(self.widget)
+        self.volume_slider.setObjectName(u"volume_slider")
+        self.volume_slider.setOrientation(Qt.Vertical)
 
         self.lbl_nome_musica = QLabel(self.widget)
         self.lbl_nome_musica.setObjectName(u"lbl_nome_musica")
@@ -389,21 +392,11 @@ class Ui_MainWindow(object):
         self.lbl_nome_musica.setFont(font)
 
         self.mPlayer_gridLayout.addWidget(self.lbl_nome_musica, 0, 1, 1, 1)
-
-        self.volume_slider = QSlider(self.widget)
-        self.volume_slider.setObjectName(u"volume_slider")
-        self.volume_slider.setOrientation(Qt.Vertical)
-
         self.mPlayer_gridLayout.addWidget(self.volume_slider, 0, 0, 3, 1)
         self.mPlayer_layout.addWidget(self.widget)
         self.verticalLayout_6.addLayout(self.mPlayer_layout)
-        #self.verticalLayout_2.addWidget(self.frMusic_controls)
-        # # #
+ 
         self.tabWidget.addTab(self.tab_2, "")
-            
-        """self.layout2.addWidget(self.slider, 0, 0, 1, 3)  # Adiciona o slider na linha 0, coluna 1, e ocupa 1 linha e 4 colunas
-
-        """
         MainWindow.setCentralWidget(self.centralwidget)
         
         # # # =============================================== [MENU BAR and STATUSBAR] ===================================== ##
@@ -426,7 +419,7 @@ class Ui_MainWindow(object):
         self.menuSobre.setObjectName("menuSobre")
         
         MainWindow.setMenuBar(self.menubar)
-
+        # # ============================================================ [Açoes Menu]
         self.actionSobre = QtWidgets.QAction("Versão",MainWindow)
         self.actionSobre.setObjectName("actionSobre")
         self.actAboutApp = QtWidgets.QAction("Sobre Yt Downloader",MainWindow)
@@ -487,7 +480,7 @@ class Ui_MainWindow(object):
         self.arquivos_mp3.extend(arquivos_mp3)
         return arquivos_mp3
 
-
+    # ================================================================ [Traduz a aplicação caso necessario]
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "YouTube Downloader"))
