@@ -23,6 +23,5 @@ Com ele é possível :
   - Autor: ernesto-alves67
 ## ⬇️ Como utilizar
 
-- [baixe o .exe do programa]([https://github.com/Ernesto-Alves67/YoutubeDownloader_/raw/main/YtDloader.exe](https://github.com/Ernesto-Alves67/YoutubeDownloader_/releases/download/v1.1.0/ytdownloader-CLI-v1.1.0.rar)).
-
+- [baixe o .exe do programa](https://github.com/Ernesto-Alves67/YoutubeDownloader_/releases/download/v1.1.0/ytdownloader-CLI-v1.1.0.rar).
 	- Após o download, descompacte o arquivo e execute o .exe como administrador.
