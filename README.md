@@ -10,7 +10,7 @@ Com ele é possível :
   - reproduzir musicas
  
 ## 🛠 Tecnologias usadas:
- - PyQt5
+ - PySide6
  - pytube
  - moviepy
  - youtubesearhpython
