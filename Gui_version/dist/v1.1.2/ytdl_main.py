@@ -1,11 +1,11 @@
 from pytube import YouTube
-from moviepy.editor import AudioFileClip
+from moviepy import AudioFileClip
 import os
 import sys
 
-from PyQt5 import QtWidgets, QtGui, QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QTableWidget, QTableWidgetItem, QAction, QFileDialog, QDialog, QSpinBox, QMessageBox, QInputDialog
-from PyQt5.QtCore import Qt, QEvent, pyqtSignal, QObject, QThread, QTimer, QFileInfo, QSize
+from PySide6 import QtWidgets, QtGui, QtCore
+from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QTableWidget, QTableWidgetItem, QAction, QFileDialog, QDialog, QSpinBox, QMessageBox, QInputDialog
+from PySide6.QtCore import Qt, QEvent, Signal, QObject, QThread, QTimer, QFileInfo, QSize
 
 from ui_ytdownloader import Ui_MainWindow
 from functools import partial
@@ -17,7 +17,7 @@ import time
 import threading
 
 class AudioDownloader(QObject):
-    progress_updated = pyqtSignal(int)
+    progress_updated = Signal(int)
     
 
     def __init__(self, youtube_url, output_filename, label, temp_dire=None, parent=None):
@@ -234,7 +234,7 @@ class MyMainWindow(QMainWindow):
     reproducaostatus = 0
     nome_musica_reproducao = ""
     som_carregado = ''
-    progresso_reproducao = pyqtSignal(int)
+    progresso_reproducao = Signal(int)
 
     def __init__(self):
         
@@ -417,8 +417,6 @@ class MyMainWindow(QMainWindow):
         input_dialog.setMinimumWidth(700)  # Defina o tamanho mínimo da largura
         input_dialog.setMinimumHeight(600)  # Defina o tamanho mínimo da altura
         input_dialog.setStyleSheet("background-color: rgb(150,150,150);color: rgb(255,255,255);")
-        
-        input_dialog.exec()
         
         if input_dialog.exec() == QDialog.Accepted:
             novo_nome = input_dialog.textValue()
@@ -750,7 +748,7 @@ class MyMainWindow(QMainWindow):
     def bv_checa_nome(self):
         renomeacao = SobreDialog("rnv", self.varios_selec, self)
         
-        if(renomeacao.exec_() == QDialog.Accepted):
+        if(renomeacao.exec() == QDialog.Accepted):
             return True
         else:
             return False
@@ -842,7 +840,7 @@ class MyMainWindow(QMainWindow):
         msg_box.setWindowTitle("Aviso")
         msg_box.setText(f"{char}.\nClique em 'Ok' para renomear. ")
         msg_box.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        button_clicked = msg_box.exec_()
+        button_clicked = msg_box.exec()
         if button_clicked == QMessageBox.Ok:
             print("Botão 'OK' pressionado.")
             return True
@@ -909,27 +907,27 @@ class MyMainWindow(QMainWindow):
     def tutorial_download(self):
         print("ds")
         dialog = TutorialDialog(self)
-        dialog.exec_()
+        dialog.exec()
 
     def tutorial_reproducao(self):
         print("rpr")
         dialog = TutorialDialog(self)
         dialog.tab_widget.setCurrentIndex(2)
-        dialog.exec_()
+        dialog.exec()
 
     def tutorial_buscas(self):
         dialog = TutorialDialog(self)
         dialog.tab_widget.setCurrentIndex(1)
-        dialog.exec_()
+        dialog.exec()
         print("sch")
 
     def mostrar_sobre_dialog(self):
         dialog = SobreDialog(self)
-        dialog.exec_()
+        dialog.exec()
     
     def mostrar_sobre_ytd_dialog(self):
         ytd = SobreDialog("ytd", self)
-        ytd.exec_()
+        ytd.exec()
 
     def mostrar_configuracoes(self):
         self.exibir_conf_dialog()
@@ -1012,7 +1010,7 @@ class MyMainWindow(QMainWindow):
         layout.addWidget(button_cancel)
         input_dialog.setLayout(layout)
         
-        ok = input_dialog.exec_()
+        ok = input_dialog.exec()
         if ok:
             # Botão "OK" foi pressionado
             self.num_results = sb_numBuscas.value()
@@ -1040,4 +1038,4 @@ if __name__ == '__main__':
     """
     window.show()
 
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
