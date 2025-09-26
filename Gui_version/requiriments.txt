@@ -1,5 +1,6 @@
 youtube-search-python
-pytube
+ffmpeg
+yt-dlp
 moviepy
 PySide6
 pygame
