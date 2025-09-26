@@ -10,13 +10,20 @@ class AudioDownloader(QObject):
 
     def __init__(self, youtube_url, output_filename, label, temp_dire=None, parent=None):
         super(AudioDownloader, self).__init__(parent)
-        if not pygame.get_init():
-            pygame.init()
+        
+        # Initialize pygame only if needed for audio playback, not for downloading
+        try:
+            if not pygame.get_init():
+                pygame.init()
 
-        if not pygame.mixer.get_init():
-            # Exemplo de inicialização com parâmetros comuns:
-            # Frequência=44100, Tamanho do bit=-16 (assinado), Canais=2 (estéreo)
-            pygame.mixer.init(44100, -16, 2, 2048)
+            if not pygame.mixer.get_init():
+                # Exemplo de inicialização com parâmetros comuns:
+                # Frequência=44100, Tamanho do bit=-16 (assinado), Canais=2 (estéreo)
+                pygame.mixer.init(44100, -16, 2, 2048)
+        except pygame.error as e:
+            # Audio device not available - this is OK, we can still download
+            print(f"Warning: Audio device not available: {e}")
+            print("Download functionality will work, but audio playback may not be available.")
 
         self.youtube_url = youtube_url
         self.output_filename = output_filename

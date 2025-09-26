@@ -115,7 +115,12 @@ class AudioActions:
             nome_sem_extensao = arquivo.rstrip('.mp3')
             self.ui.lbl_nome_musica.setText("Playing:  " +nome_sem_extensao)
         # Inicializa o mixer do pygame
-        pygame.mixer.init()
+        try:
+            pygame.mixer.init()
+        except pygame.error as e:
+            print(f"Warning: Audio device not available for playback: {e}")
+            self.ui.statusbar.showMessage("Erro: Dispositivo de áudio não disponível")
+            return
 
         # Carrega a música
         nl = pygame.mixer.Sound(arquivo)
@@ -147,7 +152,12 @@ class AudioActions:
             nome_sem_extensao = nome_arquivo.rstrip('.mp4')
             self.ui.lbl_nome_musica.setText("Playing:  " +nome_sem_extensao)
 
-        pygame.mixer.init()
+        try:
+            pygame.mixer.init()
+        except pygame.error as e:
+            print(f"Warning: Audio device not available for playback: {e}")
+            self.ui.statusbar.showMessage("Erro: Dispositivo de áudio não disponível")
+            return
 
         # Carrega a música
         nl = pygame.mixer.Sound(arquivo)
