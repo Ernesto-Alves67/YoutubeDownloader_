@@ -1,9 +1,7 @@
 youtube-search-python
-pytube
+ffmpeg
+yt-dlp
 moviepy
-PyQt5
-pyqt5-tools
+PySide6
 pygame
-os
-sys
 
