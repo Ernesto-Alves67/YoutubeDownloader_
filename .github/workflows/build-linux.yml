@@ -1,0 +1,63 @@
+name: Build and Release (Linux)
+
+on:
+  push:
+    branches:
+      - linux-releaseer
+    tags: [ "*" ]
+    paths:
+      - 'desktop_version/**'
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      # 1) Checkout do repositório
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # 2) Configurar Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      # 3) Instalar dependências
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r desktop_version/requirements.txt
+          pip install pyinstaller
+
+      # 4) Build com PyInstaller
+      - name: Build with PyInstaller
+        run: |
+           pyinstaller --onefile desktop_version/core/ytdl_main.py \
+            --name YouTubeDL  
+           ls dist
+      - name: Get upload URL
+        id: geturl
+        run:   |
+          upload_url=$(curl -sL https://api.github.com/repos/${{github.repository}}/releases/latest?access_token=${{ secrets.GITHUB_TOKEN }} | jq -r '.upload_url')
+          echo ::set-output name=upload_url::$upload_url
+      # 5) Criar ou atualizar uma Release no GitHub
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: v0.1.1   # Defina ou gere a versão dinamicamente (ex. via semver)
+          release_name: "Linux Release v0.1.0"
+          draft: false       # true se quiser criar como rascunho
+          prerelease: false  # true se for um pré-lançamento
+        env:
+          GITHUB_TOKEN: ${{ secrets.BUILD_TOKEN }}
+
+      # 6) Fazer upload do binário gerado na release
+      - name: Upload to Release
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.geturl.outputs.upload_url }}
+          asset_path: dist/ytdl  # Caminho do arquivo gerado pelo PyInstaller (sem extensão no Linux)
+          asset_name: "ytdl-linux"  # Nome que aparecerá na Release
+          asset_content_type: application/octet-stream
