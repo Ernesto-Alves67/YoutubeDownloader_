@@ -1,5 +1,5 @@
 from pytube import YouTube
-from moviepy.editor import AudioFileClip
+from moviepy import AudioFileClip
 import os
 
 def download_and_convert_youtube_audio(youtube_url, output_filename):

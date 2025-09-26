@@ -3,7 +3,7 @@ import threading
 
 
 from PySide6 import QtWidgets, QtGui, QtCore
-from PySide6.QtCore import Qt, QEvent, QTimer
+from PySide6.QtCore import Qt, QEvent, QTimer, Signal
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QFileDialog, QDialog, QMessageBox, \
     QInputDialog
 
